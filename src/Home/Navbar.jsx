@@ -12,7 +12,7 @@ const Navbar = () => {
     const {loading,user}=useContext(AutoContext)
     const headNav = <>
         <li className="font-semibold" ><NavLink to="/" >Home</NavLink></li>
-        <li className="font-semibold" ><NavLink to="/myBookings" > Products</NavLink></li>
+        <li className="font-semibold" ><NavLink to="/products" > Products</NavLink></li>
         <li className="font-semibold" ><NavLink to="/contact" >Contact Us</NavLink></li>
     </>
         const handleLogout = () => {

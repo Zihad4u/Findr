@@ -12,6 +12,8 @@ import Register from './Authentication/Register.jsx';
 import AuthContext from './Authprovider/AuthContext.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Details from './Details/Details.jsx';
+import Products from './ProductsSection/Products.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +31,15 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
+      },
+      {
+        path:"/details/:id",
+        element:<Details></Details>,
+        loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
+        path:"/products",
+        element:<Products></Products>
       }
     ],
   },

@@ -1,57 +1,110 @@
 [
     {
-      "name": "TaskMaster",
-      "image": "https://i.ibb.co/L1L9186/FBG0-JGd-VUAM7niq.jpg",
-      "description": "TaskMaster is an advanced task management app designed to help you boost productivity with its intuitive UI and powerful features. It offers seamless task organization, real-time collaboration, and customizable workflows, making it perfect for both individuals and teams. Stay on top of your to-do list, set deadlines, and achieve your goals effortlessly.",
-      "tags": "Productivity",
-      "externalLinks": "https://taskmaster.com",
-      "upvoteCount": 134,
-      "status":"feature"
+        "name": "TaskMaster",
+        "image": "https://i.ibb.co/L1L9186/FBG0-JGd-VUAM7niq.jpg",
+        "description": "TaskMaster is an advanced task management app designed to help you boost productivity with its intuitive UI and powerful features. It offers seamless task organization, real-time collaboration, and customizable workflows, making it perfect for both individuals and teams. Stay on top of your to-do list, set deadlines, and achieve your goals effortlessly.",
+        "tags": "Productivity",
+        "externalLinks": "https://taskmaster.com",
+        "upvoteCount": 134,
+        "status": "feature"
     },
     {
-      "name": "FitTrack",
-      "image": "https://i.ibb.co/tBVxwvC/download-2.jpg",
-      "description": "FitTrack is a comprehensive fitness tracking app that helps you monitor your workouts, diet, and overall health. With detailed analytics, personalized workout plans, and a vibrant community, FitTrack is your ultimate companion for a healthier lifestyle. Track your progress, set goals, and stay motivated with ease.",
-      "tags": "Health",
-      "externalLinks": "https://fittrack.com",
-      "upvoteCount": 89,
-      "status":"feature"
+        "name": "FitTrack",
+        "image": "https://i.ibb.co/tBVxwvC/download-2.jpg",
+        "description": "FitTrack is a comprehensive fitness tracking app that helps you monitor your workouts, diet, and overall health. With detailed analytics, personalized workout plans, and a vibrant community, FitTrack is your ultimate companion for a healthier lifestyle. Track your progress, set goals, and stay motivated with ease.",
+        "tags": "Health",
+        "externalLinks": "https://fittrack.com",
+        "upvoteCount": 89,
+        "status": "feature"
     },
     {
-      "name": "CodeCollab",
-      "image": "https://i.ibb.co/cgrbv3r/download.png",
-      "description": "CodeCollab is a real-time collaborative coding platform that allows developers to work together seamlessly, regardless of their location. With features like live code editing, debugging, and version control integration, CodeCollab makes team coding projects more efficient and enjoyable. Collaborate on code, share knowledge, and build amazing projects together.",
-      "tags":"Collaboration",
-      "externalLinks":"https://codecollab.com",
-      "upvoteCount": 202,
-      "status":"feature"
+        "name": "CodeCollab",
+        "image": "https://i.ibb.co/cgrbv3r/download.png",
+        "description": "CodeCollab is a real-time collaborative coding platform that allows developers to work together seamlessly, regardless of their location. With features like live code editing, debugging, and version control integration, CodeCollab makes team coding projects more efficient and enjoyable. Collaborate on code, share knowledge, and build amazing projects together.",
+        "tags": "Collaboration",
+        "externalLinks": "https://codecollab.com",
+        "upvoteCount": 202,
+        "status": "feature"
     },
     {
-      "name": "TravelBuddy",
-      "image": "https://i.ibb.co/7Nv0Sk6/download-1.png",
-      "description": "TravelBuddy is your ultimate travel companion, offering a comprehensive suite of tools for trip planning, booking, and social interaction. Discover new destinations, connect with fellow travelers, and organize your itinerary all in one place. Whether you're a solo traveler or planning a group trip, TravelBuddy makes travel planning easy and fun.",
-      "tags": "Travel",
-      "externalLinks": "https://travelbuddy.com",
-      "upvoteCount": 178,
-      "status":"feature"
+        "name": "TravelBuddy",
+        "image": "https://i.ibb.co/7Nv0Sk6/download-1.png",
+        "description": "TravelBuddy is your ultimate travel companion, offering a comprehensive suite of tools for trip planning, booking, and social interaction. Discover new destinations, connect with fellow travelers, and organize your itinerary all in one place. Whether you're a solo traveler or planning a group trip, TravelBuddy makes travel planning easy and fun.",
+        "tags": "Travel",
+        "externalLinks": "https://travelbuddy.com",
+        "upvoteCount": 178,
+        "status": "feature"
     },
     {
-      "name": "EcoShop",
-      "image": "https://i.ibb.co/R65KHxd/download-2.png",
-      "description": "EcoShop is an online marketplace dedicated to eco-friendly and sustainable products. Shop with a clear conscience knowing that every purchase supports ethical brands committed to reducing environmental impact. From reusable household items to organic clothing, EcoShop offers a wide range of products to help you live a more sustainable lifestyle.",
-      "tags": "E-commerce",
-      "externalLinks": "https://ecoshop.com",
-      "upvoteCount": 245,
-      "status":"feature"
+        "name": "EcoShop",
+        "image": "https://i.ibb.co/R65KHxd/download-2.png",
+        "description": "EcoShop is an online marketplace dedicated to eco-friendly and sustainable products. Shop with a clear conscience knowing that every purchase supports ethical brands committed to reducing environmental impact. From reusable household items to organic clothing, EcoShop offers a wide range of products to help you live a more sustainable lifestyle.",
+        "tags": "E-commerce",
+        "externalLinks": "https://ecoshop.com",
+        "upvoteCount": 245,
+        "status": "feature"
     },
     {
-      "name": "Learnly",
-      "image": "https://i.ibb.co/ySz5QQk/images-q-tbn-ANd9-Gc-TICk-VO1-I0rl3az-Rz-1-BQJQc-Lftp7-O36-SWDVA-s.png",
-      "description": "Learnly is an online learning platform offering a variety of courses from top instructors worldwide. With a vast library of content covering everything from programming and design to personal development and business, Learnly makes it easy to acquire new skills and advance your career. Enjoy interactive lessons, hands-on projects, and a supportive community of learners.",
-      "tags": "Education",
-      "externalLinks": "https://learnly.com",
-      "upvoteCount": 312,
-      "status":"feature"
+        "name": "Learnly",
+        "image": "https://i.ibb.co/ySz5QQk/images-q-tbn-ANd9-Gc-TICk-VO1-I0rl3az-Rz-1-BQJQc-Lftp7-O36-SWDVA-s.png",
+        "description": "Learnly is an online learning platform offering a variety of courses from top instructors worldwide. With a vast library of content covering everything from programming and design to personal development and business, Learnly makes it easy to acquire new skills and advance your career. Enjoy interactive lessons, hands-on projects, and a supportive community of learners.",
+        "tags": "Education",
+        "externalLinks": "https://learnly.com",
+        "upvoteCount": 312,
+        "status": "feature"
+    },
+    {
+        "name": "QuickNotes",
+        "image": "https://i.ibb.co/PxX4LG8/dsf.png",
+        "description": "QuickNotes is a simple yet powerful note-taking app that allows you to jot down ideas, create to-do lists, and organize your thoughts quickly. With an easy-to-use interface and seamless synchronization across devices, QuickNotes ensures you never miss an important detail.",
+        "tags": "Productivity",
+        "externalLinks": "https://quicknotes.com",
+        "upvoteCount": 120,
+        "status": "tranding"
+    },
+    {
+        "name": "HealthMate",
+        "image": "https://i.ibb.co/FWKfYJS/download-3.png",
+        "description": "HealthMate is a comprehensive health tracking app that helps you monitor your fitness, diet, and overall well-being. With personalized health tips, daily tracking features, and a supportive community, HealthMate is your go-to app for a healthier lifestyle.",
+        "tags": "Health",
+        "externalLinks": "https://healthmate.com",
+        "upvoteCount": 98,
+        "status": "tranding"
+    },
+    {
+        "name": "DevConnect",
+        "image": "https://i.ibb.co/S3NdHmc/download.jpg",
+        "description": "DevConnect is a real-time communication platform for developers. It offers seamless chat, video calls, and file sharing, making it easier to collaborate on projects and share knowledge. Connect with developers around the world and enhance your coding skills.",
+        "tags": "Development",
+        "externalLinks": "https://devconnect.com",
+        "upvoteCount": 156,
+        "status": "tranding"
+    },
+    {
+        "name": "TripPlanner",
+        "image": "https://i.ibb.co/7gRn5JW/download-1.jpg",
+        "description": "TripPlanner helps you plan your trips effortlessly. From finding the best travel deals to creating detailed itineraries, TripPlanner offers all the tools you need for a stress-free vacation. Share your plans with friends and discover new destinations.",
+        "tags": "Travel",
+        "externalLinks": "https://tripplanner.com",
+        "upvoteCount": 142,
+        "status": "tranding"
+    },
+    {
+        "name": "GreenShop",
+        "image": "https://i.ibb.co/3T0TjJ4/download-2.jpg",
+        "description": "GreenShop is an online marketplace focused on eco-friendly products. From sustainable fashion to reusable household items, GreenShop offers a wide range of products that help you live a more environmentally conscious lifestyle. Shop green, live green.",
+        "tags": "E-commerce",
+        "externalLinks": "https://greenshop.com",
+        "upvoteCount": 205,
+        "status": "tranding"
+    },
+    {
+        "name": "SkillUp",
+        "image": "https://i.ibb.co/fnC5zn3/download-4.png",
+        "description": "SkillUp is an online learning platform offering a variety of courses from industry experts. Whether you want to learn programming, design, or business skills, SkillUp provides interactive lessons, hands-on projects, and certificates upon completion.",
+        "tags": "Education",
+        "externalLinks": "https://skillup.com",
+        "upvoteCount": 289,
+        "status": "tranding"
     }
-  ]
-  
+]
