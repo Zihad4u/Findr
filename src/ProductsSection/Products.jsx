@@ -12,19 +12,28 @@ const Products = () => {
     }
 
     const [data, setData] = useState([])
+
+    const count = 14;
+    const [itemPerPage, setItemPerPages] = useState(6);
+    const [currentPage, setCurrentPage] = useState(0);
+    const numberOfPages = Math.ceil(count / itemPerPage);
+    const pages = [...Array(numberOfPages).keys()];
+    console.log(pages)
+    const handlePrev = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNext = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
     useEffect(() => {
-        fetch(`http://localhost:5000/data?search=${Search}&page=2&limit=6`)
+        fetch(`http://localhost:5000/allProduct?search=${Search}&page=${currentPage}&limit=${itemPerPage}`)
             .then(res => res.json())
             .then(data => setData(data))
-    }, [Search])
-    const count = data.length;
-    const itemPerPage=6;
-    const numberOfPages=Math.ceil(count/itemPerPage);
-    const pages=[]
-    for(let i =0;i < numberOfPages;i++){
-        pages.push(i)
-    }
-    console.log(pages)
+    }, [Search, currentPage])
     return (
         <div>
             {/* search box */}
@@ -58,6 +67,15 @@ const Products = () => {
                         ></FeatureCard>)
                     }
                 </div>
+            </div>
+            {/* pagination */}
+            <p>Current Page:{currentPage}</p>
+            <div className="flex  justify-center  mt-5" >
+                <button onClick={handlePrev} className="btn bg-[#2b3440] hover:text-black hover:border-red-600  text-white" >Prev</button>
+                {
+                    pages.map(item => <button onClick={() => setCurrentPage(item)} key={item} className={`btn bg-[#2b3440] hover:text-black hover:border-red-600  text-white ml-2 ${currentPage === item && 'bg-red-600'}`}  >{item}</button>)
+                }
+                <button onClick={handleNext} className="btn bg-[#2b3440] hover:text-black hover:border-red-600 ml-2 text-white" >Next</button>
             </div>
         </div>
     );
