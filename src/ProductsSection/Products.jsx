@@ -12,8 +12,8 @@ const Products = () => {
     }
 
     const [data, setData] = useState([])
-
-    const count = 14;
+    const [totalCount,setTotalCount]=useState(0)
+    const count = totalCount;
     const [itemPerPage, setItemPerPages] = useState(6);
     const [currentPage, setCurrentPage] = useState(0);
     const numberOfPages = Math.ceil(count / itemPerPage);
@@ -32,7 +32,10 @@ const Products = () => {
     useEffect(() => {
         fetch(`http://localhost:5000/allProduct?search=${Search}&page=${currentPage}&limit=${itemPerPage}`)
             .then(res => res.json())
-            .then(data => setData(data))
+            .then(data => {
+                setData(data.result); // Update data with result
+                setTotalCount(data.totalItems);
+            })
     }, [Search, currentPage])
     return (
         <div>
