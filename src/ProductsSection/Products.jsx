@@ -18,7 +18,7 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const numberOfPages = Math.ceil(count / itemPerPage);
     const pages = [...Array(numberOfPages).keys()];
-    console.log(pages)
+    // console.log(pages)
     const handlePrev = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)

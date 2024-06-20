@@ -6,7 +6,7 @@ export const AutoContext = createContext(null);
 /* eslint-disable react/prop-types */
 const AuthContext = ({ children }) => {
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState([]);
     console.log(user)
 
         // login with email and password

@@ -49,7 +49,7 @@ const Navbar = () => {
                         user ? <div className=" relative" >
                             <img id="navbarClickable" className="h-12 object-cover w-12 rounded-full" src={user.photoURL} alt="" />
                             <Tooltip anchorSelect="#navbarClickable" clickable style={{ zIndex: 999 }}>
-                                <button className="btn w-full" >{user.displayName}</button>
+                                <button disabled className="btn disabled:bg-white disabled:text-black w-full" >{user.displayName}</button>
                                 <button className="btn w-full mt-2" >Dashboard</button>
                                 <div className="" >
                                     <h3 onClick={handleLogout} className="btn w-full mt-2" >Log Out</h3>

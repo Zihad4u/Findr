@@ -106,5 +106,15 @@
         "externalLinks": "https://skillup.com",
         "upvoteCount": 289,
         "status": "tranding"
+    },
+    {
+        "name": "SkillUp",
+        "image": "https://i.ibb.co/fnC5zn3/download-4.png",
+        "description": "SkillUp is an online learning platform offering a variety of courses from industry experts. Whether you want to learn programming, design, or business skills, SkillUp provides interactive lessons, hands-on projects, and certificates upon completion.",
+        "tags": "Education",
+        "externalLinks": "https://skillup.com",
+        "upvoteCount": 289,
+        "status": "tranding",
+        "uploaderEmail":"zihadhasan365365365@gmail.com"
     }
 ]
