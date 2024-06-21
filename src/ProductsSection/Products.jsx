@@ -72,7 +72,6 @@ const Products = () => {
                 </div>
             </div>
             {/* pagination */}
-            <p>Current Page:{currentPage}</p>
             <div className="flex  justify-center  mt-5" >
                 <button onClick={handlePrev} className="btn bg-[#2b3440] hover:text-black hover:border-red-600  text-white" >Prev</button>
                 {

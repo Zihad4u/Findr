@@ -20,6 +20,8 @@ import DashRoot from './Dashboard/DashRoot.jsx';
 import RootHome from './Dashboard/RootHome.jsx';
 import MyProfile from './Dashboard/Myprofile/MyProfile.jsx';
 import AddProuct from './Dashboard/AddProuct.jsx';
+import MyProduct from './Dashboard/Myprofile/MyProduct.jsx';
+import Update from './Dashboard/Myprofile/Update.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,20 +52,29 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path:'/dashRoot',
-    element:<Sidebar></Sidebar>,
-    children:[
+    path: '/dashRoot',
+    element: <Sidebar></Sidebar>,
+    children: [
       {
-        path:"/dashRoot",
-        element:<RootHome></RootHome>
+        path: "/dashRoot",
+        element: <RootHome></RootHome>
       },
       {
-        path:"/dashRoot/myProfile",
-        element:<MyProfile></MyProfile>
+        path: "/dashRoot/myProfile",
+        element: <MyProfile></MyProfile>
       },
       {
-        path:"/dashRoot/addProduct",
-        element:<AddProuct></AddProuct>
+        path: "/dashRoot/addProduct",
+        element: <AddProuct></AddProuct>
+      },
+      {
+        path: "/dashRoot/myProduct",
+        element: <MyProduct></MyProduct>
+      },
+      {
+        path:"/dashRoot/update/:id",
+        element:<Update></Update>,
+        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
       }
     ]
   }

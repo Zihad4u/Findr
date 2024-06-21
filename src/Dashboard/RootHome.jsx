@@ -1,8 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AutoContext } from '../Authprovider/AuthContext';
 
 const RootHome = () => {
-    const { user } = useContext(AutoContext)
+    const { user } = useContext(AutoContext);
+    const [Data, setData] = useState([]);
+    useEffect(() => {
+        if (user && user.email) {
+            fetch(`http://localhost:5000/myProduct/${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setData(data)
+                })
+        }
+    }, [user])
     return (
         <div>
             <div>
@@ -19,7 +29,7 @@ const RootHome = () => {
                         </div>
                     </div>
                     <div className="card-body">
-                        <h2 className="card-title">Your total upload product: </h2>
+                        <h2 className="card-title">Your total upload product:{Data.length} </h2>
                         <p></p>
                         <div className="card-actions justify-end">
                             <button className=""></button>

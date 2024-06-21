@@ -40,12 +40,12 @@ const Sidebar = () => {
               </a>
             </li>
             <li className="mb-6">
-              <a href="#" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="/dashRoot/myProduct" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
                 <FaShoppingBag className='mr-3' />
                 <span className='' >My Product</span>
               </a>
             </li>
-            <li className="mb-6">
+            {/* <li className="mb-6">
               <a href="#" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
                 <FiUser className="mr-3" />
                 <span>Account</span>
@@ -56,7 +56,7 @@ const Sidebar = () => {
                 <FiAlertCircle className="mr-3" />
                 <span>Error</span>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <hr className='mt-2' />
@@ -66,12 +66,7 @@ const Sidebar = () => {
             <span>Home</span>
           </a>
         </div>
-        <div className="mt-6">
-          <div className="bg-gray-800 p-4 rounded-lg">
-            <p className="text-gray-400 text-sm mb-2">Need more features?</p>
-            <a href="#" className="text-indigo-500 text-sm hover:underline">Check out our Pro solution template.</a>
-          </div>
-        </div>
+        
       </div>
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button className="text-white bg-gray-900 p-2 rounded" onClick={toggleSidebar}>

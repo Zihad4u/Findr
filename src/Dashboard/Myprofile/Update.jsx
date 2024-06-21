@@ -1,14 +1,15 @@
-import React, { useContext, useRef } from 'react';
-import { AutoContext } from '../Authprovider/AuthContext';
-import Swal from 'sweetalert2';
+// import React from 'react';
 
-const AddProuct = () => {
-    const textAreaRef = useRef(null);
-    const textAreaRef1 = useRef(null);
-    const textAreaRef2 = useRef(null);
-    const textAreaRef3 = useRef(null);
-    const textAreaRef4 = useRef(null);
+import { useContext } from "react";
+import { AutoContext } from "../../Authprovider/AuthContext";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+
+const Update = () => {
     const { user } = useContext(AutoContext)
+    const userData = useLoaderData();
+    const { name, image, description, tags, externalLinks, _id } = userData
+    console.log(userData)
     const handleAddData = (e) => {
         e.preventDefault();
         const target = e.target;
@@ -17,14 +18,13 @@ const AddProuct = () => {
         const tags = target.tag.value
         const email = target.email.value;
         const description = target.description.value;
-        const externalLinks=target.externalLinks.value;
         const status = 'Pending';
         const upvoteCount = 0;
-        // console.log(image,name,email,description,tags)
-        const Data = { image, name, tags, email,externalLinks, description, status, upvoteCount };
-        // console.log(Data)
-        fetch('http://localhost:5000/addMyProduct', {
-            method: 'POST',
+        const externalLinks = target.externalLinks.value;
+
+        const Data = { image, name, tags, description, externalLinks };
+        fetch(`http://localhost:5000/updateProduct/${_id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -32,12 +32,11 @@ const AddProuct = () => {
 
         })
             .then(res => res.json())
-            .then(data => {
-                // console.log(data);
-                if (data.acknowledged == true) {
+            .then(data=>{
+                if (data.modifiedCount >0) {
                     Swal.fire({
                         title: 'succesfull',
-                        text: 'Item addeded successfully',
+                        text: 'Item Updated successfully',
                         icon: 'success',
                         confirmButtonText: 'ok'
                     });
@@ -49,30 +48,28 @@ const AddProuct = () => {
                     });
                 }
             })
-        textAreaRef.current.value = "";
-        textAreaRef1.current.value = "";
-        textAreaRef2.current.value = "";
-        textAreaRef3.current.value = "";
-        textAreaRef4.current.value = "";
     }
     return (
         <div className='p-8 max-w-[600px] mx-auto' >
-            <div className='flex justify-center pb-5 text-[32px] font-semibold' ><p>Add Product</p></div>
+            <div className='flex justify-center pb-5 text-[32px] font-semibold' ><p>Update Product</p></div>
             <form onSubmit={handleAddData} className="space-y-4">
+
                 <div className="sm:flex space-y-2 sm:space-y-0 sm:space-x-4">
                     <input required
                         type="text"
                         placeholder="image URL"
                         className="w-full p-2 border rounded-md"
                         name='imageUrl'
-                        ref={textAreaRef}
+                        defaultValue={image}
+
                     />
                     <input required
                         type="text"
                         placeholder="Prouct name"
                         className="w-full p-2 border rounded-md"
                         name='itemName'
-                        ref={textAreaRef1}
+                        defaultValue={name}
+
                     />
                 </div>
                 <div className="sm:flex space-y-2 sm:space-y-0 sm:space-x-4">
@@ -82,14 +79,16 @@ const AddProuct = () => {
                         placeholder="Add tags"
                         className="w-full p-2 border rounded-md"
                         name='tag'
-                        ref={textAreaRef2}
+                        defaultValue={tags}
+
                     />
                     <input required
                         type="text"
                         placeholder="External Links"
                         className="w-full p-2 border rounded-md"
                         name='externalLinks'
-                        ref={textAreaRef4}
+                        defaultValue={externalLinks}
+
                     />
 
                 </div>
@@ -114,7 +113,7 @@ const AddProuct = () => {
                     rows='5'
                     name='description'
                     className='w-full p-2 border rounded-md'
-                    ref={textAreaRef3}
+                    defaultValue={description}
                 ></textarea>
 
                 <button type='submit' className='px-4 py-2 bg-green-500 text-white rounded-md'>
@@ -126,4 +125,4 @@ const AddProuct = () => {
     );
 };
 
-export default AddProuct;
+export default Update;
