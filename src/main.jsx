@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Details from './Details/Details.jsx';
 import Products from './ProductsSection/Products.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,13 +34,13 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path:"/details/:id",
-        element:<Details></Details>,
-        loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+        path: "/details/:id",
+        element: <PrivateRoute><Details></Details></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
       },
       {
-        path:"/products",
-        element:<Products></Products>
+        path: "/products",
+        element: <Products></Products>
       }
     ],
   },
@@ -47,6 +48,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthContext><RouterProvider router={router} /><ToastContainer/></AuthContext>
+    <AuthContext><RouterProvider router={router} /><ToastContainer /></AuthContext>
   </React.StrictMode>,
 )

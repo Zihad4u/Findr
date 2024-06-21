@@ -10,7 +10,7 @@ const FeatureCard = ({ item }) => {
     const [voteCount,setVoteCount]=useState(upvoteCount)
     const {user}=useContext(AutoContext);
     const navigate=useNavigate();
-
+    // console.log(item)
     const handleUpvote=()=>{
         if(!user){
             return navigate('/login')

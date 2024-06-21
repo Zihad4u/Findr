@@ -1,63 +1,97 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { AutoContext } from "../Authprovider/AuthContext";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+// swiper
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
+// import './styles.css';
+
+// import required modules
+import { FreeMode, Pagination } from 'swiper/modules';
+import ReviewCard from "./ReviewCard";
+import { reload } from "firebase/auth";
+
 const Details = () => {
     const Data = useLoaderData();
-
     const { loading, user } = useContext(AutoContext);
     const { name, image, description, upvoteCount, tags, externalLinks, _id } = Data;
     const [voteCount, setVoteCount] = useState(upvoteCount);
-    const textAreaRef = useRef(null); // Create a ref for the textarea
-    const textAreaRef2 = useRef(null); // Create a ref for the textarea
+    const textAreaRef = useRef(null);
+    const textAreaRef2 = useRef(null);
 
     const handleUpvote = () => {
         setVoteCount(voteCount + 1);
     };
-    const { displayName, email } = user;
+
+    const { email, displayName,photoURL } = user;
     const handleReview = (e) => {
         e.preventDefault();
-        const reviewStar = e.target.reviews.value;
+        const reviewStar = parseInt(e.target.reviews.value);
+        console.log(reviewStar)
         const message = e.target.textReview.value;
-        // console.log(reviewStar, message, displayName, email);
-        const Data = { reviewStar, message, displayName, email, _id }
-        console.log(Data)
+        const reviewData = { reviewStar, message, reviewerName: displayName, reviewEmail: email, id: _id,photo:photoURL };
+
         fetch('http://localhost:5000/addReview', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(Data)
+            body: JSON.stringify(reviewData)
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged == true) {
-                    toast.success('Add review successfully')
+            .then(async res => {
+                const data = await res.json();
+                if (res.status === 201) {
+                    toast.success('Review added successfully');
                 }
-                console.log(data)
+                // else {
+                //     // toast.error('An unexpected error occurred.');
+                //     console.log()
+                // }
             })
             .catch(error => {
-                toast.error('You already add review on this product')
-                console.log(error)
-            })
+                toast.error('Failed to fetch. Please try again later.');
+                console.error('Fetch error:', error);
+            });
+
         textAreaRef.current.value = "";
         textAreaRef2.current.value = "";
+        window.location.reload()
     };
-
+    const [reviewData, setReviewData] = useState([])
+    const [hideFom, setHide] = useState('')
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviewData/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                const userReview = data.find(review => review.reviewEmail === email && review.id === _id);
+                if (userReview) {
+                    setHide('hide'); // Hide the form if a review from this user already exists
+                }
+                setReviewData(data);
+            })
+    }, [_id])
+    console.log(hideFom)
     return (
         <>
             {loading ? (
                 <span className="loading loading-spinner text-neutral"></span>
             ) : (
                 <div className="px-4">
+
                     <div className="w-full h-[680px] mt-4 md:flex pb-14">
-                        {/* left side div */}
                         <div className="md:w-[50%] w-[100%] h-full flex justify-center items-center">
                             <img className="w-full rounded-xl object-cover h-full" src={image} alt="" />
                         </div>
-                        {/* right side */}
                         <div className="md:w-[50%] mt-3 sm:mt-0 w-[100%] h-full sm:pl-5 bg-[#FFF]">
                             <h3 className="m-0 sm:text-[40px] text-[20px] font-bold text-[#131313]"></h3>
                             <p className="text-[20px] font-medium text-[#424242]">
@@ -100,8 +134,7 @@ const Details = () => {
 
                                     <p className="text-[#131313] sm:text-[16px] text-[10px] font-semibold"></p>
                                 </div>
-                                {/* handle review */}
-                                <form onSubmit={handleReview} className="mt-5">
+                                <form hidden={hideFom == "hide"} onSubmit={handleReview} className="mt-5">
                                     <div className="relative w-full">
                                         <select
                                             name="reviews"
@@ -126,7 +159,7 @@ const Details = () => {
                                         rows="5"
                                         name="textReview"
                                         className="w-full p-2 mt-3 shadow-xl border rounded-md"
-                                        ref={textAreaRef2} // Attach the ref to the textarea
+                                        ref={textAreaRef2}
                                     ></textarea>
                                     <button type="submit" className="btn">
                                         Submit
@@ -134,6 +167,48 @@ const Details = () => {
                                 </form>
                             </div>
                         </div>
+                    </div>
+                    <div className=" mt-[900px] sm:mt-[600px] md:mt-1 " >
+                        <div className="flex justify-center" >
+                            <p className=" text-[14px] sm:text-[32px] font-semibold" >User Reviews</p>
+                        </div>
+                        <Swiper
+                            slidesPerView={3}
+                            spaceBetween={30}
+                            freeMode={true}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            modules={[FreeMode, Pagination]}
+                            className="mySwiper"
+                            breakpoints={{
+                                // when window width is >= 640px
+                                1:{
+                                    slidesPerView:1,
+                                    spaceBetween:20
+                                },
+                                640: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                },
+                                // when window width is >= 768px
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                },
+                                // when window width is >= 1024px
+                                1024: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 30,
+                                },
+                            }}
+                        >
+                            {reviewData.map(item => (
+                                <SwiperSlide key={item._id}>
+                                    <ReviewCard item={item} />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
                 </div>
             )}
