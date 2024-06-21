@@ -50,7 +50,7 @@ const Navbar = () => {
                             <img id="navbarClickable" className="h-12 object-cover w-12 rounded-full" src={user.photoURL} alt="" />
                             <Tooltip anchorSelect="#navbarClickable" clickable style={{ zIndex: 999 }}>
                                 <button disabled className="btn disabled:bg-white disabled:text-black w-full" >{user.displayName}</button>
-                                <button className="btn w-full mt-2" >Dashboard</button>
+                                <Link to='/dashRoot' className="btn w-full mt-2" >Dashboard</Link>
                                 <div className="" >
                                     <h3 onClick={handleLogout} className="btn w-full mt-2" >Log Out</h3>
                                 </div>

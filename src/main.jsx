@@ -15,6 +15,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Details from './Details/Details.jsx';
 import Products from './ProductsSection/Products.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
+import Sidebar from './Dashboard/Sidebar.jsx';
+import DashRoot from './Dashboard/DashRoot.jsx';
+import RootHome from './Dashboard/RootHome.jsx';
+import MyProfile from './Dashboard/Myprofile/MyProfile.jsx';
+import AddProuct from './Dashboard/AddProuct.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,10 +45,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <Products></Products>
+        element: <Products></Products>,
       }
     ],
   },
+  {
+    path:'/dashRoot',
+    element:<Sidebar></Sidebar>,
+    children:[
+      {
+        path:"/dashRoot",
+        element:<RootHome></RootHome>
+      },
+      {
+        path:"/dashRoot/myProfile",
+        element:<MyProfile></MyProfile>
+      },
+      {
+        path:"/dashRoot/addProduct",
+        element:<AddProuct></AddProuct>
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
