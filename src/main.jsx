@@ -22,6 +22,7 @@ import MyProfile from './Dashboard/Myprofile/MyProfile.jsx';
 import AddProuct from './Dashboard/AddProuct.jsx';
 import MyProduct from './Dashboard/Myprofile/MyProduct.jsx';
 import Update from './Dashboard/Myprofile/Update.jsx';
+import ProductReview from './Dashboard/Moderator/ProductReview.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
         path: "/dashRoot/update/:id",
         element: <PrivateRoute><Update></Update></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
+        path:"/dashRoot/productReview",
+        element:<ProductReview></ProductReview>
       }
     ]
   }
