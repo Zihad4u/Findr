@@ -4,6 +4,7 @@ import { FiHome, FiUsers, FiSettings, FiLink, FiAlertCircle, FiUser, FiMenu } fr
 import { Outlet } from 'react-router-dom';
 import { FaShoppingBag } from "react-icons/fa";
 import { AutoContext } from '../Authprovider/AuthContext';
+import { FaUser } from "react-icons/fa6";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -67,6 +68,30 @@ const Sidebar = () => {
                     <a href="/dashRoot/productReview" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
                       <FaShoppingBag className='mr-3' />
                       <span className='' >Product Review</span>
+                    </a>
+                  </li>
+                </>
+              )
+            }
+            {
+              userData && userData.role === 'Moderator' && (
+                <>
+                  <li className="mb-6">
+                    <a href="/dashRoot/handleReport" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                      <FaShoppingBag className='mr-3' />
+                      <span className='' >Reported Contents</span>
+                    </a>
+                  </li>
+                </>
+              )
+            }
+            {
+              userData && userData.role === 'Admin' && (
+                <>
+                  <li className="mb-6">
+                    <a href="/dashRoot/manageUser" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                    <FaUser className='mr-3' />
+                      <span className='' >Manage User</span>
                     </a>
                   </li>
                 </>

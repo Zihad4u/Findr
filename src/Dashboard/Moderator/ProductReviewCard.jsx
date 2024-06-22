@@ -4,57 +4,56 @@ import { toast } from 'react-toastify';
 
 const ProductReviewCard = ({ book, handleDelete }) => {
     const { name, status, upvoteCount, _id } = book;
-    const [hide, setHide] = useState(false); // Initialize hide as false
-    const [hideFeature,sestHideFeature]=useState(false);
+    const [hide, setHide] = useState(false);
+    const [hideFeature, setHideFeature] = useState(false);
 
     useEffect(() => {
-        if (status === 'Accepted' || status === 'feature' || status == 'tranding' ) {
+        if (status === 'Accepted' || status === 'feature' || status === 'tranding') {
             setHide(true);
         } else {
-            setHide(false); // Ensure hide is false if status is not 'Accepted'
+            setHide(false);
         }
     }, [status]);
+
     useEffect(() => {
-        if (status === 'feature' ) {
-            sestHideFeature(true);
+        if (status === 'feature') {
+            setHideFeature(true);
         } else {
-            sestHideFeature(false); // Ensure hide is false if status is not 'Accepted'
+            setHideFeature(false);
         }
     }, [status]);
 
     const handleAccept = () => {
-        console.log(_id);
         fetch(`http://localhost:5000/accpetProduct/${_id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
                     toast.success('Product Accepted');
+                    window.location.reload(); // This will refresh the data
                 }
             })
             .catch(error => {
                 toast.error(error.message);
             });
-        window.location.reload()
     };
+
     const handleFeature = () => {
         fetch(`http://localhost:5000/feature/${_id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
                     toast.success('Product Featured');
+                    window.location.reload(); // This will refresh the data
                 }
             })
             .catch(error => {
                 toast.error(error.message);
             });
-        window.location.reload()
-    }
+    };
 
     return (
         <>
@@ -66,19 +65,21 @@ const ProductReviewCard = ({ book, handleDelete }) => {
                         </div>
                     </div>
                 </td>
-                <td className="p-4 whitespace-nowrap ">
-                    <NavLink to={`/details/${_id}`} className='btn mr-6 ' >View details</NavLink>
+                <td className="p-4 whitespace-nowrap">
+                    <NavLink to={`/details/${_id}`} className='btn mr-6'>View details</NavLink>
                     <br />
                 </td>
-                <td onClick={handleFeature} className="p-4 whitespace-nowrap btn mt-4" disabled={hideFeature}>Make feature</td>
-                <td onClick={handleAccept} className="p-4 whitespace-nowrap">
+                <td className="p-4 whitespace-nowrap btn mt-4" onClick={handleFeature}>
+                    <button disabled={hideFeature}>Make feature</button>
+                </td>
+                <td className="p-4 whitespace-nowrap" onClick={handleAccept}>
                     <button className='btn' disabled={hide}>Accept</button>
                 </td>
-                <td onClick={() => document.getElementById('my_modal_3').showModal()} className="p-4 whitespace-nowrap mt-4 btn">
+                <td className="p-4 whitespace-nowrap mt-4 btn" onClick={() => document.getElementById(`modal_${_id}`).showModal()}>
                     Reject
                 </td>
                 <td className='font-bold'>{status}</td>
-                <dialog id="my_modal_3" className="modal">
+                <dialog id={`modal_${_id}`} className="modal">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Hello!</h3>
                         <p className="py-4 text-[22px] font-semibold">Are you sure you want to reject</p>

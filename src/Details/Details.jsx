@@ -20,6 +20,7 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ReviewCard from "./ReviewCard";
 import { reload } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Details = () => {
     const Data = useLoaderData();
@@ -33,13 +34,13 @@ const Details = () => {
         setVoteCount(voteCount + 1);
     };
 
-    const { email, displayName,photoURL } = user;
+    const { email, displayName, photoURL } = user;
     const handleReview = (e) => {
         e.preventDefault();
         const reviewStar = parseInt(e.target.reviews.value);
         console.log(reviewStar)
         const message = e.target.textReview.value;
-        const reviewData = { reviewStar, message, reviewerName: displayName, reviewEmail: email, id: _id,photo:photoURL };
+        const reviewData = { reviewStar, message, reviewerName: displayName, reviewEmail: email, id: _id, photo: photoURL };
 
         fetch('http://localhost:5000/addReview', {
             method: 'POST',
@@ -69,6 +70,7 @@ const Details = () => {
     };
     const [reviewData, setReviewData] = useState([])
     const [hideFom, setHide] = useState('')
+    const [reporthideFom, setReportHide] = useState(false)
     useEffect(() => {
         fetch(`http://localhost:5000/reviewData/${_id}`)
             .then(res => res.json())
@@ -79,8 +81,52 @@ const Details = () => {
                 }
                 setReviewData(data);
             })
+
+        fetch(`http://localhost:5000/reportData/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                const Report = data.find(review => review.email === email && review.id === _id);
+                if (Report) {
+                    setReportHide(true); // Hide the form if a review from this user already exists
+                }
+                else{
+                    setReportHide(false)
+                }
+            })
+
     }, [_id])
     console.log(hideFom)
+    const handleReport = () => {
+        setReportHide(true)
+        const Reportdata = { email: email, id: _id,name }
+        fetch(`http://localhost:5000/report`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Reportdata)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    Swal.fire({
+                        title: 'succesfull',
+                        text: 'Item Report successfully',
+                        icon: 'success',
+                        confirmButtonText: 'ok'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!"
+                    });
+                }
+            })
+
+    }
     return (
         <>
             {loading ? (
@@ -116,7 +162,7 @@ const Details = () => {
                                 <p className="font-medium btn rounded-full text-[#23BE0A]">
                                     Tag:<>{tags}</>
                                 </p>
-                                <p className="font-medium mt-3 lg:mt-0 btn rounded-full text-red-700">
+                                <p onClick={handleReport} className=" text-red-700 font-medium mt-3 lg:mt-0 btn rounded-full" disabled={reporthideFom}>
                                     Report<></>
                                 </p>
                             </div>
@@ -183,9 +229,9 @@ const Details = () => {
                             className="mySwiper"
                             breakpoints={{
                                 // when window width is >= 640px
-                                1:{
-                                    slidesPerView:1,
-                                    spaceBetween:20
+                                1: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 20
                                 },
                                 640: {
                                     slidesPerView: 2,

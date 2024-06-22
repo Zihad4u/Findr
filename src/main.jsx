@@ -23,6 +23,8 @@ import AddProuct from './Dashboard/AddProuct.jsx';
 import MyProduct from './Dashboard/Myprofile/MyProduct.jsx';
 import Update from './Dashboard/Myprofile/Update.jsx';
 import ProductReview from './Dashboard/Moderator/ProductReview.jsx';
+import Report from './Dashboard/Moderator/Report.jsx';
+import ManageUser from './Dashboard/Admin/ManageUser/ManageUser.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,8 +80,16 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
       },
       {
-        path:"/dashRoot/productReview",
-        element:<ProductReview></ProductReview>
+        path: "/dashRoot/productReview",
+        element: <ProductReview></ProductReview>
+      },
+      {
+        path: "/dashRoot/handleReport",
+        element: <Report></Report>
+      },
+      {
+        path: "/dashRoot/manageUser",
+        element: <ManageUser></ManageUser>
       }
     ]
   }
