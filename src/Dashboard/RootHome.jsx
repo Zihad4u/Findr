@@ -6,7 +6,7 @@ const RootHome = () => {
     const [Data, setData] = useState([]);
     useEffect(() => {
         if (user && user.email) {
-            fetch(`http://localhost:5000/myProduct/${user.email}`)
+            fetch(`https://assignment-12-server-side-cyan.vercel.app/myProduct/${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setData(data)

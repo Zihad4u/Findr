@@ -35,7 +35,7 @@ const AuthContext = ({ children }) => {
                 };
 
                 try {
-                    const response = await fetch('http://localhost:5000/addUser', {
+                    const response = await fetch('https://assignment-12-server-side-cyan.vercel.app/addUser', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

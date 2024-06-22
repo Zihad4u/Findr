@@ -24,7 +24,7 @@ const ProductReviewCard = ({ book, handleDelete }) => {
     }, [status]);
 
     const handleAccept = () => {
-        fetch(`http://localhost:5000/accpetProduct/${_id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/accpetProduct/${_id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -40,7 +40,7 @@ const ProductReviewCard = ({ book, handleDelete }) => {
     };
 
     const handleFeature = () => {
-        fetch(`http://localhost:5000/feature/${_id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/feature/${_id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

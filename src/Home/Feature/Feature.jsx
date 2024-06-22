@@ -7,7 +7,7 @@ const Feature = () => {
     const [Realdata, setData] = useState([])
     const { loading } = useContext(AutoContext)
     useEffect(() => {
-        fetch('http://localhost:5000/data')
+        fetch('https://assignment-12-server-side-cyan.vercel.app/data')
             .then(res => res.json())
             .then(data => {
                 const filterData = data.filter(item => item.status === 'feature');

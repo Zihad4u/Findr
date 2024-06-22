@@ -30,7 +30,7 @@ const Products = () => {
         }
     }
     useEffect(() => {
-        fetch(`http://localhost:5000/allProduct?search=${Search}&page=${currentPage}&limit=${itemPerPage}`)
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/allProduct?search=${Search}&page=${currentPage}&limit=${itemPerPage}`)
             .then(res => res.json())
             .then(data => {
                 setData(data.result); // Update data with result

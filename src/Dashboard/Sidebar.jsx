@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom';
 import { FaShoppingBag } from "react-icons/fa";
 import { AutoContext } from '../Authprovider/AuthContext';
 import { FaUser } from "react-icons/fa6";
+import { FcStatistics } from "react-icons/fc";
+import { MdLocalOffer } from "react-icons/md";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,7 +16,7 @@ const Sidebar = () => {
   const { user } = useContext(AutoContext);
   const [userData, setUserData] = useState()
   useEffect(() => {
-    fetch(`http://localhost:5000/getUser/${user.email}`)
+    fetch(`https://assignment-12-server-side-cyan.vercel.app/getUser/${user.email}`)
       .then(res => res.json())
       .then(data => setUserData(data));
   }, [])
@@ -26,7 +28,7 @@ const Sidebar = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="text-3xl ml-12
            md:ml-0  font-bold">
-            <span>DeviasKit</span>
+            <span>Findr</span>
           </div>
         </div>
         <div className="flex-grow">
@@ -92,6 +94,30 @@ const Sidebar = () => {
                     <a href="/dashRoot/manageUser" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
                     <FaUser className='mr-3' />
                       <span className='' >Manage User</span>
+                    </a>
+                  </li>
+                </>
+              )
+            }
+            {
+              userData && userData.role === 'Admin' && (
+                <>
+                  <li className="mb-6">
+                    <a href="/dashRoot/Statistics" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                    <FcStatistics className='mr-3'/>
+                      <span className='' >Statistics</span>
+                    </a>
+                  </li>
+                </>
+              )
+            }
+            {
+              userData && userData.role === 'Admin' && (
+                <>
+                  <li className="mb-6">
+                    <a href="/dashRoot/manageCupon" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                    <MdLocalOffer className='mr-3' />
+                      <span className='' >Manage Coupon</span>
                     </a>
                   </li>
                 </>

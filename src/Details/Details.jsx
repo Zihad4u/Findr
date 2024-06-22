@@ -42,7 +42,7 @@ const Details = () => {
         const message = e.target.textReview.value;
         const reviewData = { reviewStar, message, reviewerName: displayName, reviewEmail: email, id: _id, photo: photoURL };
 
-        fetch('http://localhost:5000/addReview', {
+        fetch('https://assignment-12-server-side-cyan.vercel.app/addReview', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ const Details = () => {
     const [hideFom, setHide] = useState('')
     const [reporthideFom, setReportHide] = useState(false)
     useEffect(() => {
-        fetch(`http://localhost:5000/reviewData/${_id}`)
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/reviewData/${_id}`)
             .then(res => res.json())
             .then(data => {
                 const userReview = data.find(review => review.reviewEmail === email && review.id === _id);
@@ -82,7 +82,7 @@ const Details = () => {
                 setReviewData(data);
             })
 
-        fetch(`http://localhost:5000/reportData/${_id}`)
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/reportData/${_id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -100,7 +100,7 @@ const Details = () => {
     const handleReport = () => {
         setReportHide(true)
         const Reportdata = { email: email, id: _id,name }
-        fetch(`http://localhost:5000/report`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/report`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

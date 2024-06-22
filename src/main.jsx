@@ -25,11 +25,15 @@ import Update from './Dashboard/Myprofile/Update.jsx';
 import ProductReview from './Dashboard/Moderator/ProductReview.jsx';
 import Report from './Dashboard/Moderator/Report.jsx';
 import ManageUser from './Dashboard/Admin/ManageUser/ManageUser.jsx';
+import Error from './Error.jsx';
+import Statistics from './Dashboard/Admin/Statistics.jsx';
+import ManageCupon from './Dashboard/Admin/ManageCupon.jsx';
+import CuponUpdate from './Dashboard/Admin/CuponUpdate.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    // errorElement: <ErrorPage />,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
@@ -46,7 +50,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <PrivateRoute><Details></Details></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({ params }) => fetch(`https://assignment-12-server-side-cyan.vercel.app/details/${params.id}`)
       },
       {
         path: "/products",
@@ -57,6 +61,7 @@ const router = createBrowserRouter([
   {
     path: '/dashRoot',
     element: <PrivateRoute><Sidebar></Sidebar></PrivateRoute>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/dashRoot",
@@ -77,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: "/dashRoot/update/:id",
         element: <PrivateRoute><Update></Update></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({ params }) => fetch(`https://assignment-12-server-side-cyan.vercel.app/details/${params.id}`)
       },
       {
         path: "/dashRoot/productReview",
@@ -90,6 +95,18 @@ const router = createBrowserRouter([
       {
         path: "/dashRoot/manageUser",
         element: <ManageUser></ManageUser>
+      },
+      {
+        path:"/dashRoot/Statistics",
+        element:<Statistics></Statistics>
+      },
+      {
+        path:"/dashRoot/manageCupon",
+        element:<ManageCupon></ManageCupon>
+      },
+      {
+        path:"/dashRoot/addCupon",
+        element:<CuponUpdate></CuponUpdate>
       }
     ]
   }

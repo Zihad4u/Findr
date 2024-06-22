@@ -23,7 +23,7 @@ const Update = () => {
         const externalLinks = target.externalLinks.value;
 
         const Data = { image, name, tags, description, externalLinks };
-        fetch(`http://localhost:5000/updateProduct/${_id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/updateProduct/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

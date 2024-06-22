@@ -6,7 +6,7 @@ const ProductReview = () => {
     const [Realdata, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/dsaboard/data')
+        fetch('https://assignment-12-server-side-cyan.vercel.app/dsaboard/data')
             .then(res => res.json())
             .then(data => {
                 setData(data)
@@ -14,7 +14,7 @@ const ProductReview = () => {
     }, [])
     const handleDelete = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

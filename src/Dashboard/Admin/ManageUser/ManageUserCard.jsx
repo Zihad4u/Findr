@@ -24,7 +24,7 @@ const ManageUserCard = ({ book }) => {
 
     const handleAdmin = _id => {
         console.log(_id)
-        fetch(`http://localhost:5000/admin/${_id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/admin/${_id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -39,7 +39,7 @@ const ManageUserCard = ({ book }) => {
         sethideAdmin(true)
     }
     const handleModerator = _id => {
-        fetch(`http://localhost:5000/Moderator/${_id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/Moderator/${_id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

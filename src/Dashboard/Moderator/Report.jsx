@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 const Report = () => {
     const [reportData,setReportData]=useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/reportData')
+        fetch('https://assignment-12-server-side-cyan.vercel.app/reportData')
         .then(res=>res.json())
         .then(data=>{
             // console.log (data)
@@ -15,7 +15,7 @@ const Report = () => {
     },[])
     const handleDelete=(id,_id)=>{
         console.log(id,_id)
-        fetch(`http://localhost:5000/deleteReport/${id}?_id=${_id}`, {
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/deleteReport/${id}?_id=${_id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

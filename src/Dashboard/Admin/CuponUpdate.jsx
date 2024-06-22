@@ -1,34 +1,27 @@
-import React, { useContext, useRef } from 'react';
-import { AutoContext } from '../Authprovider/AuthContext';
-import Swal from 'sweetalert2';
+import { useRef } from "react";
+import Swal from "sweetalert2";
 
-const AddProuct = () => {
+
+const CuponUpdate = () => {
     const textAreaRef = useRef(null);
     const textAreaRef1 = useRef(null);
     const textAreaRef2 = useRef(null);
     const textAreaRef3 = useRef(null);
-    const textAreaRef4 = useRef(null);
-    const { user } = useContext(AutoContext)
-    const handleAddData = (e) => {
+
+    const hadnleCupon = (e) => {
         e.preventDefault();
         const target = e.target;
-        const image = target.imageUrl.value;
         const name = target.itemName.value;
-        const tags = target.tag.value
-        const email = target.email.value;
+        const ExpirtyDate = target.expiryDate.value
+        const DiscountAmount = parseInt(target.DiscountAmount.value);
         const description = target.description.value;
-        const externalLinks=target.externalLinks.value;
-        const status = 'Pending';
-        const upvoteCount = 0;
-        // console.log(image,name,email,description,tags)
-        const Data = { image, name, tags, email,externalLinks, description, status, upvoteCount };
-        // console.log(Data)
-        fetch('https://assignment-12-server-side-cyan.vercel.app/addMyProduct', {
+        const data = { CuponCode: name, ExpirtyDate, DiscountAmount, description }
+        fetch('https://assignment-12-server-side-cyan.vercel.app/cupon', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(Data)
+            body: JSON.stringify(data)
 
         })
             .then(res => res.json())
@@ -53,61 +46,44 @@ const AddProuct = () => {
         textAreaRef1.current.value = "";
         textAreaRef2.current.value = "";
         textAreaRef3.current.value = "";
-        textAreaRef4.current.value = "";
     }
     return (
         <div className='p-8 max-w-[600px] mx-auto' >
-            <div className='flex justify-center pb-5 text-[32px] font-semibold' ><p>Add Product</p></div>
-            <form onSubmit={handleAddData} className="space-y-4">
+            <div className="flex justify-center text-[20px] font-semibold" >
+                <p>Add Cupon</p>
+            </div>
+
+            <form onSubmit={hadnleCupon} className="space-y-4 mt-4">
+
                 <div className="sm:flex space-y-2 sm:space-y-0 sm:space-x-4">
                     <input required
                         type="text"
-                        placeholder="image URL"
-                        className="w-full p-2 border rounded-md"
-                        name='imageUrl'
-                        ref={textAreaRef}
-                    />
-                    <input required
-                        type="text"
-                        placeholder="Prouct name"
+                        placeholder="Cupon Code"
                         className="w-full p-2 border rounded-md"
                         name='itemName'
                         ref={textAreaRef1}
+
                     />
                 </div>
                 <div className="sm:flex space-y-2 sm:space-y-0 sm:space-x-4">
-                   
+
                     <input required
-                        type="text"
-                        placeholder="Add tags"
+                        type="date"
+                        placeholder="Expiry Date"
                         className="w-full p-2 border rounded-md"
-                        name='tag'
-                        ref={textAreaRef2}
+                        name='expiryDate'
+                        ref={textAreaRef}
+
                     />
                     <input required
-                        type="text"
-                        placeholder="External Links"
+                        type="number"
+                        placeholder="Discount Amount"
                         className="w-full p-2 border rounded-md"
-                        name='externalLinks'
-                        ref={textAreaRef4}
+                        name='DiscountAmount'
+                        ref={textAreaRef2}
+
                     />
 
-                </div>
-                <div className="sm:flex space-y-2  sm:space-y-0 sm:space-x-4">
-                    <input hidden
-                        type="email"
-                        placeholder="Emai Address"
-                        className="w-full p-2 border rounded-md"
-                        name='email'
-                        value={user.email}
-                    />
-                    <input hidden
-                        type="text"
-                        placeholder="User Name"
-                        className="w-full p-2 border rounded-md"
-                        name='userName'
-                        value={user.displayName}
-                    />
                 </div>
                 <textarea required
                     placeholder='Description'
@@ -126,4 +102,4 @@ const AddProuct = () => {
     );
 };
 
-export default AddProuct;
+export default CuponUpdate;

@@ -4,7 +4,7 @@ import ManageUserCard from './ManageUserCard';
 const ManageUser = () => {
     const [userData, setUserData] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/getUser`)
+        fetch(`https://assignment-12-server-side-cyan.vercel.app/getUser`)
             .then(res => res.json())
             .then(data => setUserData(data));
     }, [])
