@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { FiHome, FiUsers, FiSettings, FiLink, FiAlertCircle, FiUser, FiMenu } from 'react-icons/fi';
 import { Outlet } from 'react-router-dom';
 import { FaShoppingBag } from "react-icons/fa";
+import { AutoContext } from '../Authprovider/AuthContext';
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+  const { user } = useContext(AutoContext);
+  const [userData, setUserData] = useState()
+  useEffect(() => {
+    fetch(`http://localhost:5000/getUser/${user.email}`)
+      .then(res => res.json())
+      .then(data => setUserData(data));
+  }, [])
+
 
   return (
     <div className="flex flex-col md:flex-row  min-h-screen">
@@ -27,36 +36,42 @@ const Sidebar = () => {
                 <span>Overview</span>
               </a>
             </li>
-            <li className="mb-6">
-              <a href="/dashRoot/myProfile" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
-                <CgProfile className='mr-3' />
-                <span>My profile</span>
-              </a>
-            </li>
-            <li className="mb-6">
-              <a href="/dashRoot/addProduct" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
-                <FiLink className="mr-3" />
-                <span>Add Product</span>
-              </a>
-            </li>
-            <li className="mb-6">
-              <a href="/dashRoot/myProduct" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
-                <FaShoppingBag className='mr-3' />
-                <span className='' >My Product</span>
-              </a>
-            </li>
-            {/* <li className="mb-6">
-              <a href="#" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
-                <FiUser className="mr-3" />
-                <span>Account</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
-                <FiAlertCircle className="mr-3" />
-                <span>Error</span>
-              </a>
-            </li> */}
+            {
+              userData && !userData.role && (
+                <>
+                  <li className="mb-6">
+                    <a href="/dashRoot/myProfile" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                      <CgProfile className='mr-3' />
+                      <span>My profile</span>
+                    </a>
+                  </li>
+                  <li className="mb-6">
+                    <a href="/dashRoot/addProduct" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                      <FiLink className="mr-3" />
+                      <span>Add Product</span>
+                    </a>
+                  </li>
+                  <li className="mb-6">
+                    <a href="/dashRoot/myProduct" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                      <FaShoppingBag className='mr-3' />
+                      <span className='' >My Product</span>
+                    </a>
+                  </li>
+                </>
+              )
+            }
+            {
+              userData && userData.role === 'Moderator' && (
+                <>
+                  <li className="mb-6">
+                    <a href="/dashRoot/productReview" className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                      <FaShoppingBag className='mr-3' />
+                      <span className='' >Product Review</span>
+                    </a>
+                  </li>
+                </>
+              )
+            }
           </ul>
         </div>
         <hr className='mt-2' />
@@ -66,7 +81,7 @@ const Sidebar = () => {
             <span>Home</span>
           </a>
         </div>
-        
+
       </div>
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button className="text-white bg-gray-900 p-2 rounded" onClick={toggleSidebar}>

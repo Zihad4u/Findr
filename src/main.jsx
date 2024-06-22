@@ -53,27 +53,27 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashRoot',
-    element: <Sidebar></Sidebar>,
+    element: <PrivateRoute><Sidebar></Sidebar></PrivateRoute>,
     children: [
       {
         path: "/dashRoot",
-        element: <RootHome></RootHome>
+        element: <PrivateRoute><RootHome></RootHome></PrivateRoute>
       },
       {
         path: "/dashRoot/myProfile",
-        element: <MyProfile></MyProfile>
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
       {
         path: "/dashRoot/addProduct",
-        element: <AddProuct></AddProuct>
+        element: <PrivateRoute><AddProuct></AddProuct></PrivateRoute>
       },
       {
         path: "/dashRoot/myProduct",
-        element: <MyProduct></MyProduct>
+        element: <PrivateRoute><MyProduct></MyProduct></PrivateRoute>
       },
       {
-        path:"/dashRoot/update/:id",
-        element:<Update></Update>,
+        path: "/dashRoot/update/:id",
+        element: <PrivateRoute><Update></Update></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
       }
     ]
