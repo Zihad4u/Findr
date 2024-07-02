@@ -4,7 +4,7 @@ Welcome to Findr website, your go-to platform for discovering the latest and gre
 
 ## Live Site URL
 Check out the live site:https://assignment-12-405e5.web.app
-server side repo:
+server side repo:https://github.com/Zihad4u/Findr-server-side
 
 ## Features
 
