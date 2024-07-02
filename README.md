@@ -18,10 +18,9 @@ server side repo:
 
 To get started with development, follow these steps:
 
-1. **Clone the repository**: `git clone https://github.com/yourusername/productexplorer.git`
-2. **Install dependencies**: `npm install`
-3. **Run the development server**: `npm start`
-4. **Build for production**: `npm run build`
+1. **Install dependencies**: `npm install`
+2. **Run the development server**: `npm start`
+3. **Build for production**: `npm run build`
 
 ## Contributing
 
